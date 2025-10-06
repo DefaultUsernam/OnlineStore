@@ -1,3 +1,11 @@
+// Ulises Cantor
+// 10/6/2025
+// Menchukov
+// Computer Programming 3
+// Online Store Project
+// This Store class creates a Store object with an ArrayList of ItemForSale objects that stores its prices and ItemForSale objects and can obtain those ItemForSale objects' creators based on their ItemForSale object
+// It can also add, remove, and display the ItemForSale objects for the Store
+
 /*Implement the following functionality into the store:
 
   instance variables: 
@@ -21,7 +29,53 @@
 
     Where these variables are stored and how to name them is up to you!
 */
-public class Store
-{
 
+import java.util.ArrayList;
+
+public class Store {
+  private int profit;
+  private ArrayList<ItemForSale> items;
+
+  public Store(int p, ArrayList<ItemForSale> i) {
+    profit = p;
+    items = i;
+  }
+
+  public String showItems() {
+    String returnString = "";
+    for (int i = 0; i < items.size(); i++) {
+      if (i != 0) {
+        returnString += ", ";
+      }
+      returnString += items.get(i).getName();
+    }
+    return returnString;
+  }
+
+  public void addItem(ItemForSale i) {
+    items.add(i);
+  }
+
+  public void sellItem(ItemForSale itemName) {
+    for (int i = 0; i < items.size(); i++) {
+      if (items.get(i) == itemName) {
+        profit += itemName.getPrice();
+        items.remove(i);
+        break;
+      }
+    }
+  }
+
+  public String creator(ItemForSale itemName) {
+    for (int i = 0; i < items.size(); i++) {
+      if (items.get(i) == itemName) {
+        return items.get(i).getCreator();
+      }
+    }
+    return "";
+  }
+
+  public int getProfits() {
+    return profit;
+  }
 }
